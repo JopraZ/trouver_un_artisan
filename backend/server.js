@@ -13,3 +13,5 @@ sequelize.authenticate()
     .catch (err =>{
         console.log('Erreur de connexion à la base', err);
     });
+
+    
