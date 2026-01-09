@@ -1,39 +1,39 @@
-const { Datatype } = require('sequelize')
+const { DataTypes } = require('sequelize')
 const sequelize = require('../config/db')
 
 const artisan = sequelize.define('artisan', {
 
     id_artisan:{
-        type: Datatype.INTEGER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
 
     nom: {
-        type: Datatype.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
 
     siteweb: {
-        type: Datatype.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
 
-    categorie: {
-        type: Datatype.TEXT
+    catégorie: {
+        type: DataTypes.TEXT
     },
 
     description: {
-        type: Datatype.TEXT
+        type: DataTypes.TEXT
     },
 
     id_metier: {
-        type: Datatype.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
 
     id_ville: {
-        type: Datatype.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
 }, {

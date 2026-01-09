@@ -1,26 +1,39 @@
 const { demande } = require('../models');
 
-exports.createDemande = async (req,res) => {
-    try {
-        const {email_client, message, id_artisan} = req.body
+const allowedArtisanId = 3;
 
+exports.createDemande = async (req, res) => {
+    try {
+        const { email_client, message, id_artisan } = req.body;
+
+        // 1️⃣ Vérification des champs obligatoires
         if (!email_client || !message || !id_artisan) {
-            return res.status(400).json ({
+            return res.status(400).json({
                 message: 'Tous les champs sont obligatoires'
             });
         }
 
-        const demande = await demande.create ({
-            email_cleint,
+        // 2️⃣ Vérification de l’artisan autorisé (AVANT insertion)
+        if (parseInt(id_artisan) !== allowedArtisanId) {
+            return res.status(404).json({
+                message: 'Page non trouvée'
+            });
+        }
+
+        // 3️⃣ Création de la demande
+        const nouvelleDemande = await demande.create({
+            email_client,
             message,
             id_artisan,
-            date_demande: new date()
+            date_demande: new Date()
         });
 
-        res.status(200).json(demande)
+        // 4️⃣ Réponse succès
+        return res.status(201).json(nouvelleDemande);
+
     } catch (error) {
-        res.status(500).json({
-            message:' Erreur lors de la création de la demande',
+        return res.status(500).json({
+            message: 'Erreur lors de la création de la demande',
             error
         });
     }

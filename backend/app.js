@@ -16,5 +16,8 @@ app.get('/', (req, res) =>{
     res.send('API Trouver un artisan')
 });
 
+app.use((req, res) => {
+    res.status(404).json({ message: 'Page non trouvée' });
+});
 
 module.exports = app;

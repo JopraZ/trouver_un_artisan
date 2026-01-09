@@ -1,16 +1,16 @@
-const { Datatype } = require('sequelize')
+const { DataTypes } = require('sequelize')
 const sequelize = require('../config/db')
 
 const metier = sequelize.define ('metier', {
     
     id_metier: {
-        type: Datatype.INTEGER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
 
     nom: {
-        type: Datatype.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     }
 }, {

@@ -1,32 +1,33 @@
-const { artisan, metier, ville } = require('../models');
+const { artisan } = require('../models');
 
-exports.getAllArtisans = async (req,res) => {
+exports.getArtisansAlimentation = async (req, res) => {
     try {
-        const artisans = await artisan.findAll ({
-            include: [metier, ville]
+        const artisans = await artisan.findAll({
+            where: { catégorie: 'Alimentation' }
         });
         res.json(artisans);
     } catch (error) {
-        res.status(500).json({
-            message: 'Erreur lors de la récupération des artisans',
-            error
-        });
+        res.status(500).json({ message: 'Erreur serveur', error });
     }
 };
 
 exports.getAllArtisansById = async (req, res) => {
-    try {
-        const artisan = await artisan.finByPk(req.params.id, {
-            include: [metier, ville]
-        });
+    const ALLOWED_ARTISAN_ID = 3;
+    const artisanId = parseInt(req.params.id);
 
-        if(!artisan)
-            return res.status(404).json({ message: 'artisan non trouvé'});
+    if (artisanId !== ALLOWED_ARTISAN_ID) {
+        return res.status(404).json({ message: 'Page non trouvée' });
     }
-    catch (error) {
-        res.status(500).json({
-            message:"Erreur lors de la récupération de l'artisan",
-            error
-        });
+
+    try {
+        const artisanData = await artisan.findByPk(ALLOWED_ARTISAN_ID);
+
+        if (!artisanData) {
+            return res.status(404).json({ message: 'Page non trouvée' });
+        }
+
+        res.json(artisanData);
+    } catch (error) {
+        res.status(500).json({ message: 'Erreur serveur', error });
     }
 };
