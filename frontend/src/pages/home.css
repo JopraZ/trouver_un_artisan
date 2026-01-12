@@ -1,0 +1,50 @@
+/* CONTENEUR PRINCIPAL */
+main {
+    padding: 48px 32px;
+    background-color: #0074c7;
+}
+
+/* NOTICE D’UTILISATION */
+.instruction {
+    max-width: 800px;
+    margin: 0 auto 64px auto;
+    padding: 24px 32px;
+
+    background-color: #00497c;
+    border-radius: 8px;
+}
+
+.instruction p {
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 16px;
+    padding-left: 30px;
+}
+
+/* LISTE DES ÉTAPES */
+.instruction ol {
+    padding-left: 75px;
+}
+
+.instruction li {
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+/* CONTENEUR DES CARTES */
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+/* AJUSTEMENT DES CARTES SUR LA HOME */
+.card {
+  width: 280px;
+}
