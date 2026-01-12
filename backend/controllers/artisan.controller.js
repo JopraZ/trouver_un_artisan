@@ -1,33 +1,56 @@
 const { artisan } = require('../models');
+const db = require('../config/db');
 
-exports.getArtisansAlimentation = async (req, res) => {
+exports.searchArtisans = async (req, res) => {
+    const { q } = req.query;
+
+    if (!q || q.length < 1) {
+        return res.json([]);
+    }
+
     try {
-        const artisans = await artisan.findAll({
-            where: { catégorie: 'Alimentation' }
-        });
-        res.json(artisans);
+        const search = `${q}%`;
+
+        const [rows] = await db.query(
+        `
+        SELECT id_artisan, nom
+        FROM artisan
+        WHERE nom COLLATE utf8mb4_general_ci LIKE '${search}'
+        `
+        );
+
+        res.json(rows);
     } catch (error) {
-        res.status(500).json({ message: 'Erreur serveur', error });
+        console.error('SEARCH ERROR:', error);
+        res.status(500).json({
+        message: 'Erreur lors de la recherche des artisans'
+        });
     }
 };
 
-exports.getAllArtisansById = async (req, res) => {
-    const ALLOWED_ARTISAN_ID = 3;
-    const artisanId = parseInt(req.params.id);
 
-    if (artisanId !== ALLOWED_ARTISAN_ID) {
-        return res.status(404).json({ message: 'Page non trouvée' });
-    }
+
+
+
+/* 📄 FICHE ARTISAN */
+exports.getArtisanById = async (req, res) => {
+    const { id } = req.params;
 
     try {
-        const artisanData = await artisan.findByPk(ALLOWED_ARTISAN_ID);
+        const [rows] = await db.query(
+        'SELECT * FROM artisan WHERE id_artisan = ?',
+        [id]
+        );
 
-        if (!artisanData) {
-            return res.status(404).json({ message: 'Page non trouvée' });
+        if (rows.length === 0) {
+        return res.status(404).json({ message: 'Page non trouvée' });
         }
 
-        res.json(artisanData);
+        res.json(rows[0]);
     } catch (error) {
-        res.status(500).json({ message: 'Erreur serveur', error });
+        console.error(error);
+        res.status(500).json({
+        message: 'Erreur serveur'
+        });
     }
 };
