@@ -1,47 +1,58 @@
-import './home.css'
-import Card from '../components/cardAccueil'
+import './home.css';
+import Card from '../components/cardAccueil';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
-    return (
+  const navigate = useNavigate();
 
-        <main>
-            <div className="instruction">
-                <p>Comment ça marche :</p>
-                <ol>
-                    <li>Choisir la catégorie de l’artisan dans le menu</li>
-                    <li>Choisir l’artisan</li>
-                    <li>Le contacter dans le formulaire de contact</li>
-                    <li>Une réponse sera apporter sous 48h</li>
-                </ol>
-            </div>
+  const goToLabbé = () => {
+    navigate('/artisan/chocolaterie-labbe');
+  };
 
-            <div className="card-container">
+  const goTo404 = () => {
+    navigate('/artisan/undefied');
+  };
 
-                <Card 
-                id = {6}
-                nom = 'Orville Salmons'
-                note = {5.0}
-                metier = 'Chauffagiste'
-                ville = 'Evian'
-                />
+  return (
+    <main>
 
-                <Card 
-                id = {12}
-                nom = 'Ernest Carignan'
-                note = {5.0}
-                metier = 'Ferronier'
-                ville = 'Le Puy-en-Velay'
-                />
+      <div className="instruction">
+        <p>Comment ça marche :</p>
+        <ol>
+          <li>Choisir la catégorie de l’artisan dans le menu</li>
+          <li>Choisir l’artisan</li>
+          <li>Le contacter dans le formulaire de contact</li>
+          <li>Une réponse sera apportée sous 48h</li>
+        </ol>
+      </div>
 
-                <Card 
-                id = {3}
-                nom = 'Chocolaterie Labbé'
-                note = {4.9}
-                metier = 'Chocolatier'
-                ville = 'Lyon'
-                />
-            </div>
-        </main>
+      <div className="card-container">
 
-    )
+        <Card
+          nom="Orville Salmons"
+          note={5.0}
+          metier="Chauffagiste"
+          ville="Evian"
+          onClick={goTo404}
+        />
+
+        <Card
+          nom="Ernest Carignan"
+          note={5.0}
+          metier="Ferronier"
+          ville="Le Puy-en-Velay"
+          onClick={goTo404}
+        />
+
+        <Card
+          nom="Chocolaterie Labbé"
+          note={4.9}
+          metier="Chocolatier"
+          ville="Lyon"
+          onClick={goToLabbé}
+        />
+
+      </div>
+    </main>
+  );
 }

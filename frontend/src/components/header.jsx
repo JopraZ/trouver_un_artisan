@@ -5,82 +5,87 @@ import logo from '../assets/images/Logo.png';
 import './header.css';
 
 export default function Header() {
-    const [categories, setCategories] = useState([]);
-    const [search, setSearch] = useState('');
-    const [results, setResults] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [search, setSearch] = useState('');
+  const [results, setResults] = useState([]);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    if (categories.length === 0) {
-        fetch('http://localhost:3000/api/categories')
-        .then(res => res.json())
-        .then(data => setCategories(data))
-        .catch(err => console.error(err));
+  // chargement catégories (simple)
+  if (!categories.length) {
+    fetch('http://localhost:3000/api/categories')
+      .then(res => res.json())
+      .then(setCategories)
+      .catch(console.error);
+  }
+
+  // recherche
+  const handleSearch = async (value) => {
+    setSearch(value);
+
+    if (!value.trim()) {
+      setResults([]);
+      return;
     }
 
+    try {
+      const res = await fetch(
+        `http://localhost:3000/api/artisans/search?q=${value}`
+      );
+      setResults(await res.json());
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-    const handleSearch = (value) => {
-        setSearch(value);
+  // clic résultat
+  const handleResultClick = (artisan) => {
+    setSearch('');
+    setResults([]);
 
-        if (value.length < 1) {
-        setResults([]);
-        return;
-        }
+    navigate(
+      artisan.nom === 'Chocolaterie Labbé'
+        ? '/artisan/chocolaterie-labbe'
+        : '/artisan-inexistant'
+    );
+  };
 
-        fetch(`http://localhost:3000/api/artisans/search?q=${value}`)
-        .then(res => res.json())
-        .then(data => setResults(data))
-        .catch(err => console.error(err));
-    };
+  return (
+    <header className="header">
+      <div className="header-left">
 
-    const handleClick = (artisan) => {
-        if (artisan.nom === 'Chocolaterie Labbé') {
-        navigate(`/artisan/${artisan.id_artisan}`);
-        } else {
-        navigate('/404');
-        }
-    };
+        <Link to="/" className="logo">
+          <img src={logo} alt="Trouver un artisan" />
+        </Link>
 
-    return (
-        <header className="header">
-        <div className="header-left">
-            <Link to="/" className="logo">
-            <img src={logo} alt="Trouver un artisan" />
-            </Link>
+        <div className="search">
+          <input
+            type="text"
+            placeholder="Rechercher un artisan..."
+            value={search}
+            onChange={(e) => handleSearch(e.target.value)}
+          />
 
-            <div className="search">
-            <input
-                type="text"
-                placeholder="Rechercher un artisan..."
-                value={search}
-                onChange={(e) => handleSearch(e.target.value)}
-            />
-
-            {results.length > 0 && (
-                <ul className="search-results">
-                {results.map(artisan => (
-                    <li
-                    key={artisan.id_artisan}
-                    onClick={() => handleClick(artisan)}
-                    >
-                    {artisan.nom}
-                    </li>
-                ))}
-                </ul>
-            )}
-            </div>
+          {!!results.length && (
+            <ul className="search-results">
+              {results.map(a => (
+                <li key={a.id_artisan} onClick={() => handleResultClick(a)}>
+                  {a.nom}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
-        <nav className="nav">
-            {categories.map(category => (
-            <Link
-                key={category.id}
-                to={`/${category.nom.toLowerCase()}`}
-            >
-                {category.nom}
-            </Link>
-            ))}
-        </nav>
-        </header>
-    );
+      </div>
+
+      <nav className="nav">
+        {categories.map(c => (
+          <Link key={c.id} to={`/${c.nom.toLowerCase()}`}>
+            {c.nom}
+          </Link>
+        ))}
+      </nav>
+    </header>
+  );
 }

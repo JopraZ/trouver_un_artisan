@@ -9,18 +9,19 @@ import Home from './pages/home';
 
 function App() {
   return (
-      <div className="layout">
-      <Header />
+        <div className="layout">
+        
+        <Header />
 
-       <main className="content">
+        <main className="content">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/artisan/:id" element={<Artisan />} />
-          <Route path="*" element={<NotFound />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/artisan/chocolaterie-labbe" element={<Artisan />} />          
+            <Route path="*" element={<NotFound />} />
         </Routes>
-      </main>
+        </main>
 
-      <Footer />
+        <Footer />
     </div>
   );
 }
