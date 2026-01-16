@@ -16,12 +16,9 @@ export default function Alimentation() {
   }, []);
 
   const handleClick = (artisan) => {
-    if (artisan.nom === 'Chocolaterie Labbé') {
-      navigate('/artisan/chocolaterie-labbe');
-    } else {
-      navigate('/artisan-inexistant');
-    }
-  };
+  navigate(`/artisan/${artisan.id_artisan}`);
+};
+
 console.log(artisans);
 
  return (

@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/alimentation" element={<Alimentation />} />
-          <Route path="/artisan/chocolaterie-labbe" element={<Artisan />} />
+          <Route path="/artisan/:id" element={<Artisan />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 
