@@ -4,8 +4,8 @@ const artisanController = require('../controllers/artisan.controller');
 
 /* 🔍 RECHERCHE — TOUJOURS EN PREMIER */
 router.get('/search', artisanController.searchArtisans);
-
-/* 📄 FICHE ARTISAN */
+router.get('/', artisanController.getArtisansByCategorie);
 router.get('/:id', artisanController.getArtisanById);
+
 
 module.exports = router;
