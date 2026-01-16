@@ -1,42 +1,42 @@
 .card-fiche-artisan {
-  background: #00497c ;
-  color: white;
-  padding: 50px;
-  padding-bottom: 80px;
-  border-radius: 14px;
-  max-width: 820px;
-  margin: 60px auto;
-  position: relative;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    background: #00497c ;
+    color: white;
+    padding: 50px;
+    padding-bottom: 80px;
+    border-radius: 14px;
+    max-width: 820px;
+    margin: 60px auto;
+    position: relative;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
 .card-fiche-artisan h1 {
-  margin-bottom: 50px;
-  text-align: center;
-  font-size: 56px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 56px;
 }
 
 .card-fiche-artisan p {
-  margin: 10px 0;
-  line-height: 1.5;
-  font-size: 20px;
+    margin: 10px 0;
+    line-height: 1.5;
+    font-size: 20px;
 }
 
 .card-fiche-artisan button {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 
-  padding: 12px 18px;
-  border: none;
-  border-radius: 10px;
-  background: #ffd700;
-  color: #00497c;
-  font-weight: bold;
-  cursor: pointer;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #cd2c2e;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .card-fiche-artisan a {
-  color: white;
-  text-decoration: underline;
+    color: white;
+    text-decoration: underline;
 }

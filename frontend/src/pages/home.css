@@ -1,10 +1,8 @@
-/* CONTENEUR PRINCIPAL */
 main {
     padding: 48px 32px;
     background-color: #0074c7;
 }
 
-/* NOTICE D’UTILISATION */
 .instruction {
     max-width: 800px;
     margin: 0 auto 64px auto;
@@ -22,7 +20,6 @@ main {
     padding-left: 30px;
 }
 
-/* LISTE DES ÉTAPES */
 .instruction ol {
     padding-left: 75px;
 }
@@ -35,16 +32,14 @@ main {
     line-height: 1.6;
 }
 
-/* CONTENEUR DES CARTES */
 .card-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 150px;
-  flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 150px;
+    flex-wrap: wrap;
 }
 
-/* AJUSTEMENT DES CARTES SUR LA HOME */
 .card {
-  width: 280px;
+    width: 280px;
 }

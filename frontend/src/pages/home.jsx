@@ -6,7 +6,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   const goToLabbé = () => {
-    navigate('/artisan/chocolaterie-labbe');
+    navigate('/artisan/3');
   };
 
   const goTo404 = () => {
