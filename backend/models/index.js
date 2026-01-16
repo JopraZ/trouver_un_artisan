@@ -3,6 +3,19 @@ const metier = require('./metier');
 const ville = require('./ville');
 const demande = require('./demande');
 
+categorie.hasMany(metier, {
+    foreignKey: 'id_categorie'
+});
+
+metier.belongsTo(categorie, {
+    foreignKey: 'id_categorie'
+});
+
+/* =========================
+   RELATIONS MÉTIERS / ARTISANS
+========================= */
+
+
 // Un metier à plusieurs artisans
 metier.hasMany(artisan, {
     foreignKey: 'id_metier'
@@ -12,25 +25,34 @@ artisan.belongsTo(metier,{
     foreignKey: 'id_metier'
 });
 
+
+/* =========================
+   RELATIONS VILLES / ARTISANS
+========================= */
+
+
 // Une ville à plusieurs artisans
 
 ville.hasMany(artisan, {
     foreignKey: 'id_ville'
 });
 
-ville.belongsTo(ville, {
+artisan.belongsTo(ville, {
     foreignKey: 'id_ville'
 });
 
-// Un artisan à plusieur demandes
+/* =========================
+   RELATIONS ARTISANS / DEMANDES
+========================= */
 
 artisan.hasMany(demande, {
-    foreignKey:'id_artisan'
+    foreignKey: 'id_artisan'
 });
 
-artisan.belongsTo(artisan, {
-    foreignKey:'id_artisan'
+demande.belongsTo(artisan, {
+    foreignKey: 'id_artisan'
 });
+
 
 module.exports = {
     artisan,

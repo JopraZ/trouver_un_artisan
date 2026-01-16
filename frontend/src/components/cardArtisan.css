@@ -1,0 +1,27 @@
+.card-artisan {
+  background: #00497c;
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.card-clickable {
+  cursor: pointer;
+}
+
+.card-clickable:hover {
+  transform: translateY(-5px);
+}
+
+.card-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stars {
+  font-size: 20px;
+  margin-bottom: 4px;
+}

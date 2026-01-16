@@ -1,0 +1,45 @@
+main {
+    padding: 48px 32px;
+    background-color: #0074c7;
+}
+
+.instruction {
+    max-width: 800px;
+    margin: 0 auto 64px auto;
+    padding: 24px 32px;
+
+    background-color: #00497c;
+    border-radius: 8px;
+}
+
+.instruction p {
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 16px;
+    padding-left: 30px;
+}
+
+.instruction ol {
+    padding-left: 75px;
+}
+
+.instruction li {
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 150px;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 280px;
+}

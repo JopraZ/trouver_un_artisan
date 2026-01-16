@@ -1,0 +1,10 @@
+.alimentation {
+    padding: 40px;
+}
+
+.artisan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 32px;
+    margin-top: 30px;
+}
