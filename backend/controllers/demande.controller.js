@@ -1,40 +1,26 @@
-const { demande } = require('../models');
-
-const allowedArtisanId = 3;
+const sequelize = require('../config/db');
 
 exports.createDemande = async (req, res) => {
+    const { nom, email, objet, message, id_artisan } = req.body;
+
+    if (!nom || !email || !objet || !message || !id_artisan) {
+        return res.status(400).json({ message: "Champs manquants" });
+    }
+
     try {
-        const { email_client, message, id_artisan } = req.body;
-
-        // 1️⃣ Vérification des champs obligatoires
-        if (!email_client || !message || !id_artisan) {
-            return res.status(400).json({
-                message: 'Tous les champs sont obligatoires'
-            });
+        await sequelize.query(
+        `
+        INSERT INTO demande (nom, email, objet, message, id_artisan)
+        VALUES (:nom, :email, :objet, :message, :id_artisan)
+        `,
+        {
+            replacements: { nom, email, objet, message, id_artisan }
         }
+        );
 
-        // 2️⃣ Vérification de l’artisan autorisé (AVANT insertion)
-        if (parseInt(id_artisan) !== allowedArtisanId) {
-            return res.status(404).json({
-                message: 'Page non trouvée'
-            });
-        }
-
-        // 3️⃣ Création de la demande
-        const nouvelleDemande = await demande.create({
-            email_client,
-            message,
-            id_artisan,
-            date_demande: new Date()
-        });
-
-        // 4️⃣ Réponse succès
-        return res.status(201).json(nouvelleDemande);
-
+        res.status(201).json({ message: "Demande envoyée" });
     } catch (error) {
-        return res.status(500).json({
-            message: 'Erreur lors de la création de la demande',
-            error
-        });
+        console.error("DEMANDE ERROR:", error);
+        res.status(500).json({ message: "Erreur serveur" });
     }
 };

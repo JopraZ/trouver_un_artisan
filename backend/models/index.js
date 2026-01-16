@@ -52,7 +52,6 @@ demande.belongsTo(artisan, {
     foreignKey: 'id_artisan'
 });
 
-/* EXPORT */
 module.exports = {
     artisan,
     metier,

@@ -1,6 +1,5 @@
 const sequelize = require('../config/db');
 
-/* 🔍 RECHERCHE ARTISANS */
 exports.searchArtisans = async (req, res) => {
     const { q } = req.query;
 
@@ -31,7 +30,6 @@ exports.searchArtisans = async (req, res) => {
     }
 };
 
-/* 📄 FICHE ARTISAN */
 exports.getArtisanById = async (req, res) => {
   const { id } = req.params;
 
@@ -68,7 +66,6 @@ exports.getArtisanById = async (req, res) => {
 };
 
 
-/* 📂 ARTISANS PAR CATEGORIE */
 exports.getArtisansByCategorie = async (req, res) => {
     const { categorie } = req.query;
 
