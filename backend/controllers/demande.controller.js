@@ -10,7 +10,7 @@ exports.createDemande = async (req, res) => {
     try {
         await sequelize.query(
         `
-        INSERT INTO demande (nom, email, objet, message, id_artisan)
+        INSERT INTO demande (nom, email_client, objet, message, id_artisan)
         VALUES (:nom, :email, :objet, :message, :id_artisan)
         `,
         {
