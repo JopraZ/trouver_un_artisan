@@ -33,32 +33,40 @@ exports.searchArtisans = async (req, res) => {
 
 /* 📄 FICHE ARTISAN */
 exports.getArtisanById = async (req, res) => {
-    const { id } = req.params;
+  const { id } = req.params;
 
-    try {
-        const [rows] = await sequelize.query(
-        `
-        SELECT *
-        FROM artisan
-        WHERE id_artisan = :id
-        `,
-        {
-            replacements: { id }
-        }
-        );
+  try {
+    const [rows] = await sequelize.query(
+      `
+      SELECT 
+        a.id_artisan,
+        a.nom,
+        a.note,
+        a.description,
+        a.siteweb,
+        m.nom AS metier,
+        v.nom AS ville
+      FROM artisan a
+      LEFT JOIN metier m ON a.id_metier = m.id_metier
+      LEFT JOIN ville v ON a.id_ville = v.id_ville
+      WHERE a.id_artisan = :id
+      `,
+      {
+        replacements: { id }
+      }
+    );
 
-        if (rows.length === 0) {
-            return res.status(404).json({ message: 'Page non trouvée' });
-        }
-
-        res.json(rows[0]);
-    } catch (error) {
-        console.error('ARTISAN BY ID ERROR:', error);
-        res.status(500).json({
-            message: 'Erreur serveur'
-        });
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'Artisan non trouvé' });
     }
+
+    res.json(rows[0]);
+  } catch (error) {
+    console.error('ARTISAN BY ID ERROR:', error);
+    res.status(500).json({ message: 'Erreur serveur' });
+  }
 };
+
 
 /* 📂 ARTISANS PAR CATEGORIE */
 exports.getArtisansByCategorie = async (req, res) => {
