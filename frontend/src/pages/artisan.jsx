@@ -26,7 +26,15 @@ export default function Artisan() {
 
     return (
         <main className="artisan-page">
-        <CardFicheArtisan artisan={artisan} />
+            <div className="container-fluid my-5 px-4">
+                <div className="row justify-content-center">
+                    <div className="col-12 col-xxl-10">
+
+                    <CardFicheArtisan artisan={artisan} />
+
+                    </div>
+                </div>
+            </div>
         </main>
     );
 }

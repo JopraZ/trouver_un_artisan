@@ -20,8 +20,7 @@ exports.searchArtisans = async (req, res) => {
             replacements: { search }
         }
         );
-
-        res.json(rows);
+        res.json(rows);        
     } catch (error) {
         console.error('SEARCH ERROR:', error);
         res.status(500).json({

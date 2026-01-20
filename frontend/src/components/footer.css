@@ -1,26 +1,19 @@
 .footer {
     background-color: #384050;
     color: #ffffff;
-
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-start;
-
     padding: 15px 32px;
-    height:3%
 }
 
+/* LIENS LÉGAUX */
 .legal-text {
-    display: flex;
-    flex-direction: column;
     gap: 8px;
     padding-top: 25px;
 }
 
 .legal-text a {
     color: #ffffff;
-    text-decoration: none;
     font-size: 14px;
+    text-decoration: none;
 }
 
 .legal-text a:hover {
@@ -33,14 +26,13 @@
 }
 
 .contact p {
-    margin: 0 0 8px 0;
+    margin: 0 0 8px;
     font-weight: 600;
-    }
+}
 
 .contact a {
     color: #ffffff;
     text-decoration: none;
-    display: block;
 }
 
 .contact a:hover {
